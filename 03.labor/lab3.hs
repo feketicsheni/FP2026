@@ -71,3 +71,21 @@ bszamrdszj n b d
       if mod n b == d
         then 1 + bszamrdszj (div n b) b d
         else bszamrdszj (div n b) b d
+
+fibo a b res n
+  | n == 0 = res
+  | otherwise = fibo b res (res + b) (n - 1)
+
+fiboN n = fibo 0 1 0
+
+fiboN2 n = fiboSg 0 1 0 n
+  where
+    fiboSg a b res n = fiboSg b res (res + b) (n - 1)
+    fiboSg a b res n = fiboSg b res (res + b) (n - 1)
+
+fibols n = map (fibo 0 1 0 n) [0 .. n]
+
+ls3 = [(7673573, 10, 7), (1024, 2, 1), (1023, 2, 1), (345281, 16, 4)]
+
+atlag :: (Floating a) => [a] -> a
+atlag ls = (sum ls) / fromIntegral (length ls)
