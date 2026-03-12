@@ -1,4 +1,4 @@
--- egy szám számjegyeinek szorzatát (2 módszerrel),
+-- -egy szám számjegyeinek szorzatát (2 módszerrel),
 szjSzorat 0 = 1
 
 szjSzorzat n = mod n 10 * szjSzorat (div n 10)
