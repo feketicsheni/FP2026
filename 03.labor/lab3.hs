@@ -80,10 +80,10 @@ fibo a b res n
 
 fiboN n = fibo 0 1 0
 
-fiboN2 n = fiboSg 0 1 0 n
-  where
-    fiboSg a b res n = fiboSg b res (res + b) (n - 1)
-    fiboSg a b res n = fiboSg b res (res + b) (n - 1)
+-- fiboN2 n = fiboSg 0 1 0 n
+-- where
+--   fiboSg a b res n = fiboSg b res (res + b) (n - 1)
+--   fiboSg a b res n = fiboSg b res (res + b) (n - 1)
 
 fibols n = map (fibo 0 1 0 n) [0 .. n]
 
@@ -225,3 +225,26 @@ x0 = 2
 
 poli [] x = 0
 poli (a : als) x = a + x * poli als x
+
+---ha adva van aegy p pont koord a ketdim dikban
+
+type Pont = (Double, Double)
+
+lsP :: [Pont]
+lsP = [(4.5, 6.2), (1.2, 3.4), (6, 8), (4.5, 2.4)]
+
+p :: Pont
+p = (3.4, 5.6)
+
+tavolsag (x1, y1) (x2, y2) = sqrt ((x1 - x2) ** 2 + (y1 - y2) ** 2)
+
+minTavolsag lsP p = foldl (\p1 p2 -> if tavolsag p1 p < tavolsag p2 p then p1 else p2) lsP
+
+minTavvolsag2 lsP p = foldl1 aux lsP
+  where
+    aux p1 p2 = if tavolsag p1 p < tavolsag p2 p then p1 else p2
+
+minTavolsag3 [p1] _ = p1
+minTavolsag3 (p1 : p2 : ls) p
+  | tavolsag p1 p < tavolsag p2 p = minTavolsag3 (p1 : ls) p
+  | otherwise = minTavolsag3 (p2 : ls) p
