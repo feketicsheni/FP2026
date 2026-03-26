@@ -94,7 +94,19 @@ fiboAB a b = (dropWhile (< a) . takeWhile (< b)) fibo
 atlag :: (Floating a) => [a] -> a
 atlag ls = (sum ls) / fromIntegral (length ls)
 
+pozAtlag ls = atlag [i | i <- ls, i > 0]
+
+pozAtlag2 ls = atlag $ filter (> 0) ls
+
 -- - meghatározzuk azt a listát, amely tartalmazza az eredeti lista minden n-ik elemét,
+
+listaNElem ls n = [i | (idx, i) <- zip [1 ..] ls, mod idx n == 0]
+
 -- - tükrözi egy lista elemeit,
+
+tukor ls = reverse ls
+
+tukor2 ls = foldl (\res x -> x : res) [] ls
+
 -- - két módszerrel is meghatározza egy lista legnagyobb elemeinek pozícióit: a lista elemeit kétszer járja be, illetve úgy hogy a lista elemeit csak egyszer járja be,
 -- - meghatározza egy lista leggyakrabban előforduló elemét.
