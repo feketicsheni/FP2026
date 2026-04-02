@@ -1,3 +1,5 @@
+import Data.ByteString (intercalate)
+import Data.List
 import System.Posix.Internals (puts)
 import System.Win32 (lOCALE_S2359)
 
@@ -56,7 +58,11 @@ main2 = do
   n <- readLn :: IO Int
   putStrLn ("n=" ++ show n)
   let fiboLs = fibo n
+  putStrLn "mapM_-el  "
   mapM_ (\x -> putStr (show x ++ " ")) fiboLs
+  putStrLn "\nintercalate-tel"
+
+-- putStrLn $ intercalate ", " $ map show fiboLs
 
 -- - n-ig a Fibonacci számok listáját ($n > 50$), úgy hogy a számok közé szóközt ír,
 
