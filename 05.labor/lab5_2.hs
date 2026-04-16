@@ -34,10 +34,22 @@
 
 lsNevjegy = [("mari", [10, 6, 5.5, 8]), ("feri", [8.5, 9.5]), ("zsuzsa", [4.5, 7.9, 10]), ("levi", [8.5, 9.5, 10, 7.5])]
 
+atlagTu :: [(String, [Double])] -> [(String, Double)]
 atlagTu ls = [(nev, atlag jegyek) | (nev, jegyek) <- ls]
   where
-    atlag ls2 = fromIntegral (sum ls2) / fromIntegral (length ls2)
+    atlag ls2 = sum ls2 / fromIntegral (length ls2)
 
-main3 = do
-  let lsNevjegy = [("mari", [10, 6, 5.5, 8]), ("feri", [8.5, 9.5]), ("zsuzsa", [4.5, 7.9, 10]), ("levi", [8.5, 9.5, 10, 7.5])]
+atlagTu2 ls = mapM_
+  where
+    ls2 = [(nev, atlag jegyek) | (nev, jegyek) <- ls]
+    atlag ls2 = sum ls2 / fromIntegral (length ls2)
+
+main = do
+  let lsNevjegy :: [(String, [Double])]
+      lsNevjegy =
+        [ ("mari", [10, 6, 5.5, 8]),
+          ("feri", [8.5, 9.5]),
+          ("zsuzsa", [4.5, 7.9, 10]),
+          ("levi", [8.5, 9.5, 10, 7.5])
+        ]
   mapM_ (\(nev, atlagJegyek) -> putStrLn (nev ++ " " ++ show atlagJegyek)) (atlagTu lsNevjegy)
